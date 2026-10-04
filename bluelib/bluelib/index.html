@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!-- AI Assistance Disclosure: Developed with the assistance of Claude AI. All code has been reviewed, adapted, and tested by the author. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlueLib Catalogue | BlueCrest College Library</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%23ec4899%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="site-name"><svg class="logo" viewBox="0 0 64 64" width="40" height="40" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#ec4899"/><path d="M12 20Q22 16 32 21Q42 16 52 20V47Q42 43 32 48Q22 43 12 47Z" fill="#fff"/><path d="M32 21V48" stroke="#6d28d9" stroke-width="3"/></svg>BlueLib <span>Catalogue</span></h1>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#catalogue">Catalogue</a>
+        <a href="#add-book">Add Book</a>
+        <div class="notif-wrap">
+          <button type="button" id="notif-btn" class="btn btn-icon" aria-expanded="false" aria-controls="notif-panel">
+            Notifications
+            <span id="notif-badge" class="badge" hidden>0</span>
+          </button>
+          <div id="notif-panel" class="notif-panel" hidden>
+            <div class="notif-head">
+              <strong>Activity</strong>
+              <button type="button" id="notif-clear" class="btn btn-small">Clear all</button>
+            </div>
+            <ul id="notif-list" class="notif-list"></ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h2 id="hero-title">Find your next great read</h2>
+        <p>Browse, search and borrow books from the BlueCrest College Library.</p>
+        <a href="#catalogue" class="btn btn-light">Browse Books</a>
+        <ul class="stats">
+          <li class="stat stat-blue"><strong id="stat-titles">0</strong> Titles</li>
+          <li class="stat stat-green"><strong id="stat-copies">0</strong> Copies available</li>
+          <li class="stat stat-pink"><strong id="stat-out">0</strong> Out of stock</li>
+        </ul>
+      </div>
+      <svg class="hero-img" viewBox="0 0 480 320" width="480" height="320" role="img" aria-label="Illustration of colourful books on a shelf"><circle cx="240" cy="160" r="150" fill="#fff" fill-opacity=".18"/><circle cx="400" cy="70" r="46" fill="#fff" fill-opacity=".15"/><rect x="40" y="100" width="30" height="150" rx="4" fill="#3b82f6"/><rect x="40" y="118" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="76" y="65" width="30" height="185" rx="4" fill="#f97316"/><rect x="76" y="83" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="112" y="90" width="30" height="160" rx="4" fill="#10b981"/><rect x="112" y="108" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="148" y="50" width="30" height="200" rx="4" fill="#ec4899"/><rect x="148" y="68" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="184" y="80" width="30" height="170" rx="4" fill="#8b5cf6"/><rect x="184" y="98" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="220" y="60" width="30" height="190" rx="4" fill="#f59e0b"/><rect x="220" y="78" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="256" y="95" width="30" height="155" rx="4" fill="#06b6d4"/><rect x="256" y="113" width="30" height="6" fill="#fff" fill-opacity=".55"/><rect x="292" y="70" width="30" height="180" rx="4" fill="#ef4444"/><rect x="292" y="88" width="30" height="6" fill="#fff" fill-opacity=".55"/><g transform="rotate(14 350 250)"><rect x="338" y="82" width="32" height="168" rx="4" fill="#a3e635"/></g><rect x="24" y="250" width="400" height="16" rx="8" fill="#4c1d95"/><rect x="40" y="266" width="12" height="30" fill="#4c1d95"/><rect x="396" y="266" width="12" height="30" fill="#4c1d95"/><g transform="translate(110 34)"><path d="M0 40Q40 18 80 40V92Q40 70 0 92Z" fill="#fff"/><path d="M160 40Q120 18 80 40V92Q120 70 160 92Z" fill="#fef3c7"/><path d="M80 40V92" stroke="#ec4899" stroke-width="3"/></g><g fill="#fde68a"><path d="M60 60l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/><path d="M420 150l4 9 9 4-9 4-4 9-4-9-9-4 9-4z"/></g></svg>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="catalogue" class="panel" aria-labelledby="catalogue-title">
+      <h2 id="catalogue-title">Browse Books</h2>
+      <div class="toolbar">
+        <div class="field">
+          <label for="search">Search by title</label>
+          <input type="search" id="search" placeholder="Type a title...">
+        </div>
+        <div class="field">
+          <label for="filter-category">Category</label>
+          <select id="filter-category">
+            <option value="All">All categories</option>
+            <option value="IT">IT</option>
+            <option value="Business">Business</option>
+            <option value="Science">Science</option>
+            <option value="Arts">Arts</option>
+          </select>
+        </div>
+        <button type="button" id="reset-filters" class="btn btn-outline">Reset filters</button>
+      </div>
+      <p id="result-count" class="muted" aria-live="polite"></p>
+      <div id="book-grid" class="book-grid"></div>
+      <div id="empty-msg" class="empty" hidden>
+        <svg viewBox="0 0 240 180" width="240" height="180" role="img" aria-label="Magnifying glass over a book"><ellipse cx="120" cy="160" rx="90" ry="10" fill="#ddd6fe"/><path d="M40 60Q80 40 120 62V138Q80 116 40 138Z" fill="#a78bfa"/><path d="M200 60Q160 40 120 62V138Q160 116 200 138Z" fill="#c4b5fd"/><circle cx="150" cy="82" r="30" fill="#fff" fill-opacity=".6" stroke="#ec4899" stroke-width="8"/><path d="M172 104L204 136" stroke="#ec4899" stroke-width="10" stroke-linecap="round"/></svg>
+        <p>No books match your search.</p>
+      </div>
+    </section>
+
+    <section id="add-book" class="panel" aria-labelledby="add-title">
+      <h2 id="add-title">Add a Book</h2>
+      <div class="add-layout">
+      <form id="add-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title">
+          </div>
+          <div class="field">
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author">
+          </div>
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">Select category</option>
+              <option value="IT">IT</option>
+              <option value="Business">Business</option>
+              <option value="Science">Science</option>
+              <option value="Arts">Arts</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="copies">Copies Available</label>
+            <input type="number" id="copies" name="copies" min="0" step="1">
+          </div>
+        </div>
+        <p id="form-msg" class="form-msg" role="alert"></p>
+        <div class="form-actions">
+          <button type="submit" class="btn">Add Book</button>
+          <button type="reset" id="form-reset" class="btn btn-outline">Clear form</button>
+        </div>
+      </form>
+      <svg class="add-img" viewBox="0 0 320 260" width="320" height="260" role="img" aria-label="Book with a plus sign"><circle cx="160" cy="130" r="115" fill="#ede9fe"/><rect x="90" y="50" width="130" height="160" rx="10" fill="#8b5cf6" transform="rotate(-6 155 130)"/><rect x="100" y="60" width="130" height="160" rx="10" fill="#fff" stroke="#6d28d9" stroke-width="5"/><rect x="118" y="86" width="70" height="10" rx="5" fill="#c4b5fd"/><rect x="118" y="108" width="94" height="8" rx="4" fill="#ddd6fe"/><rect x="118" y="126" width="84" height="8" rx="4" fill="#ddd6fe"/><circle cx="225" cy="185" r="34" fill="#f59e0b"/><path d="M225 167V203M207 185H243" stroke="#fff" stroke-width="9" stroke-linecap="round"/></svg>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 BlueLib Catalogue &mdash; Jerry Tei Eyume | Student ID: 400622039055</p>
+      <button type="button" id="back-top" class="btn btn-small">Back to top</button>
+    </div>
+  </footer>
+</body>
+</html>
